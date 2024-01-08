@@ -12,6 +12,8 @@ int FindWord(string word, string FindThisWord)
 	{
 		word = word.substr(++pos);
 		return true;
+		//debug inorder to test the Recognised words
+		cout << "Recognised word " << FindThisWord << endl;
 	}
 	return false;
 }
