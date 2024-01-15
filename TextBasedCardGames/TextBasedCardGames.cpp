@@ -19,6 +19,7 @@ int FindWord(string word, string FindThisWord)
 	}
 	return false;
 }
+void BlackJack();
 
 int main()
 {
