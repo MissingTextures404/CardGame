@@ -111,7 +111,7 @@ void BlackJack()
 		}
 		if (FindWord(Userin, "Stand") || FindWord(Userin, "No more"))
 		{
-
+			break;
 		}
     }
 }
