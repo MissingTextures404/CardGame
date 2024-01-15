@@ -1,9 +1,12 @@
 #include <iostream>
 #include <string>
+#include <vector>
+#include <cstdlib>
 #include "FakeBank.h"
 using namespace std;
 
 //checks the string to find a word then returns true if it finds the word
+//this is probably the most important function in my eyes since it allows for the player to just type what ever but if they use the right word it works
 int FindWord(string word, string FindThisWord)
 {
 	int pos;
@@ -28,25 +31,53 @@ int main()
 		getline(cin, User);
 		if (FindWord(User, "Blackjack"))
 		{
-			cout << "Blackjack it is" << endl;
 			BlackJack();
 			break;
 		}
-		if (FindWord(User, "Solitare"))
+		else if (FindWord(User, "Solitare"))
 		{
 			cout << "Solitare it is" << endl;
 		}
-		if (FindWord(User, "bank"))
+		else if (FindWord(User, "bank"))
 		{
 			cout << "You currently have " << Bank.ReturnBalance() << endl;
+		}
+		else
+		{
+			cout << "You cant do that" << endl;
 		}
 	}
 }
 
+
+//Game 1: Blackjack, the games are all placed under main since they can still be called and each game is still able to use FindWord()
 void BlackJack()
 {
 	cout << "Welcome to BlackJack..." << endl;
+	cout << "The goal of the game is to beat the dealer by having you cards add up closer to 21 than the dealers cards" << endl;
     string Userin;
+	vector<int> DealerHand, DealerFaceDown;
+	vector<int> PlayerHand;
+	int card;
+	//gives the player their starting 2 cards and checks if its an ace or a picture card
+	for (int i = 0; i!=1; i++)
+	{
+		card = rand() % 11;
+		if (card == 1)
+		{
+			cout << "You got an ace do you want it to be an 11 or a 1" << endl;
+			getline(cin,Userin);
+			if (FindWord(Userin, "1") || FindWord(Userin, "One"))
+			{
+				PlayerHand.push_back(1);
+			}
+			else if (FindWord(Userin, "11") || FindWord(Userin, "Eleven"))
+			{
+				PlayerHand.push_back(11);
+			}
+		}
+	}
+
     while (true)
     {
         getline(cin, Userin);
@@ -55,9 +86,9 @@ void BlackJack()
 		{
 
 		}
-		if (FindWord(Userin, "Stand"))
+		if (FindWord(Userin, "Stand") || FindWord(Userin, "No more"))
 		{
-			
+
 		}
     }
 }
