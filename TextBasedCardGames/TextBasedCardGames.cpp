@@ -77,6 +77,16 @@ void BlackJack()
 				PlayerHand.push_back(11);
 			}
 		}
+		else if (card == 10)
+		{
+			cout << "You got a picture card with a value of 10" << endl;
+			PlayerHand.push_back(10);
+		}
+		else
+		{
+			cout << "You got a card with a value of " << card << endl;
+			PlayerHand.push_back(card);
+		}
 	}
 
     while (true)
