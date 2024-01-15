@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include "Blackjack.h"
 #include "FakeBank.h"
 using namespace std;
 
@@ -30,6 +29,8 @@ int main()
 		if (FindWord(User, "Blackjack"))
 		{
 			cout << "Blackjack it is" << endl;
+			BlackJack();
+			break;
 		}
 		if (FindWord(User, "Solitare"))
 		{
@@ -40,4 +41,23 @@ int main()
 			cout << "You currently have " << Bank.ReturnBalance() << endl;
 		}
 	}
+}
+
+void BlackJack()
+{
+	cout << "Welcome to BlackJack..." << endl;
+    string Userin;
+    while (true)
+    {
+        getline(cin, Userin);
+
+		if (FindWord(Userin, "Hit"))
+		{
+
+		}
+		if (FindWord(Userin, "Stand"))
+		{
+			
+		}
+    }
 }
