@@ -4,10 +4,10 @@
 #include "FakeBank.h"
 using namespace std;
 
+//checks the string to find a word then returns true if it finds the word
 int FindWord(string word, string FindThisWord)
 {
 	int pos;
-	//checks through the string the user puts into the game and then searches to find if that word is one of the words you want the player to use and then returns true or false
 	for (int i = 1; (pos = word.find(FindThisWord)) != -1; i++)
 	{
 		word = word.substr(++pos);
@@ -35,7 +35,7 @@ int main()
 		{
 			cout << "Solitare it is" << endl;
 		}
-		if (FindWord, "bank")
+		if (FindWord(User, "bank"))
 		{
 			cout << "You currently have " << Bank.ReturnBalance() << endl;
 		}
