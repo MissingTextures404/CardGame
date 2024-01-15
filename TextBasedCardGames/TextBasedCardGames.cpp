@@ -59,10 +59,10 @@ void BlackJack()
 	vector<int> DealerHand, DealerFaceDown;
 	vector<int> PlayerHand;
 	int card;
-	//gives the player their starting 2 cards and checks if its an ace or a picture card
+	//gives the player their starting 2 cards and checks if its an ace to allow for the optional 1 or 11 value.
 	for (int i = 0; i!=1; i++)
 	{
-		card = rand() % 11;
+		card = rand() % 10;
 		if (card == 1)
 		{
 			cout << "You got an ace do you want it to be an 11 or a 1" << endl;
@@ -84,7 +84,30 @@ void BlackJack()
 
 		if (FindWord(Userin, "Hit"))
 		{
-
+			card = rand() %10;
+			if (card == 1)
+			{
+				cout << "You got an ace do you want it to be an 11 or a 1" << endl;
+				getline(cin,Userin);
+				if (FindWord(Userin, "1") || FindWord(Userin, "One"))
+				{
+					PlayerHand.push_back(1);
+				}
+				else if (FindWord(Userin, "11") || FindWord(Userin, "Eleven"))
+				{
+					PlayerHand.push_back(11);
+				}
+			}
+			else if (card == 10)
+			{
+				cout << "You got a picture card with the value of 10" << endl;
+				PlayerHand.push_back(10);
+			}
+			else
+			{
+				cout << "You got a card with the value of " << card <<endl;
+				PlayerHand.push_back(card);
+			}
 		}
 		if (FindWord(Userin, "Stand") || FindWord(Userin, "No more"))
 		{
