@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <cstdlib>
+#include <numeric>
 #include "FakeBank.h"
 using namespace std;
 
@@ -59,7 +60,9 @@ void BlackJack()
     string Userin;
 	vector<int> DealerHand, DealerFaceDown;
 	vector<int> PlayerHand;
-	int card;
+	int card, DealerCardsValue, PlayerCardsValue;
+	bool PlayerWentBust = false;
+	bool DealerWentBust = false;
 	//gives the player their starting 2 cards and checks if its an ace to allow for the optional 1 or 11 value.
 	for (int i = 0; i!=1; i++)
 	{
@@ -91,8 +94,19 @@ void BlackJack()
 
     while (true)
     {
-        getline(cin, Userin);
+		PlayerCardsValue = accumulate(PlayerHand.begin(), PlayerHand.end(), 0);
+		if (PlayerCardsValue > 21)
+		{
+			cout << "You have gone bust" << endl;
+			PlayerWentBust = true;
+		}
+		getline(cin, Userin);
 
+		if (FindWord(Userin, "Check"))
+		{
+			cout << "You currently have cards that add up to the value of " << PlayerCardsValue << endl;
+		}
+		
 		if (FindWord(Userin, "Hit"))
 		{
 			card = rand() %10;
@@ -125,4 +139,55 @@ void BlackJack()
 			break;
 		}
     }
+	//the "ai" for the blackjack game
+	while (true)
+	{
+		card = rand() % 11;
+		DealerHand.push_back(card);
+		DealerCardsValue = accumulate(DealerHand.begin(), DealerHand.end(), 0);
+		if (DealerCardsValue <= 11)
+		{
+			cout << "The Dealer takes another card" << endl;
+		}
+		else if (DealerCardsValue >= 11 && DealerCardsValue < 21)
+		{
+			cout << "The Dealer ends with the vaule of " << DealerCardsValue << endl;
+			break;
+		}
+		else if (DealerCardsValue == 21)
+		{
+			cout << "The Dealer ends with the perfect value of 21" << endl;
+			break;
+		}
+		else if (DealerCardsValue > 21)
+		{
+			cout << "The Dealers hand is a bust" << endl;
+			break;
+		}
+	}
+
+	if (PlayerCardsValue = DealerCardsValue && !PlayerWentBust && !DealerWentBust)
+	{
+		cout << "You and the Dealer got the same amount, it is a Draw";
+	}
+	else if (PlayerCardsValue > DealerCardsValue && !PlayerWentBust && !DealerWentBust)
+	{
+		cout << "Your cards are higher than the dealers cards\n" << "You Win";
+	}
+	else if (PlayerCardsValue < DealerCardsValue && !PlayerWentBust && !DealerWentBust)
+	{
+		cout << "Your cards are lower than the dealers cards\n" << "You Lose";
+	}
+	else if (PlayerWentBust && !DealerWentBust)
+	{
+		cout << "Since you went bust, You Lose";
+	}
+	else if (PlayerWentBust && DealerWentBust)
+	{
+		cout << "Both you and the dealer went bust... \n" << "You both Lose";
+	}
+	else if (!PlayerWentBust && DealerWentBust)
+	{
+		cout << "Since the dealer went bust\n" << "You Win";
+	}
 }
