@@ -21,6 +21,7 @@ int FindWord(string word, string FindThisWord)
 	return false;
 }
 void BlackJack();
+void Solitare();
 
 int main()
 {
@@ -166,7 +167,7 @@ void BlackJack()
 		}
 	}
 
-	if (PlayerCardsValue = DealerCardsValue && !PlayerWentBust && !DealerWentBust)
+	if (PlayerCardsValue == DealerCardsValue && !PlayerWentBust && !DealerWentBust)
 	{
 		cout << "You and the Dealer got the same amount, it is a Draw";
 	}
@@ -190,4 +191,9 @@ void BlackJack()
 	{
 		cout << "Since the dealer went bust\n" << "You Win";
 	}
+}
+
+void Solitare()
+{
+	cout << "Welcome to Solitare" << endl;
 }
