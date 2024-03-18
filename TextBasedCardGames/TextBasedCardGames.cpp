@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <numeric>
 #include "FakeBank.h"
+#include "Cards.h"
 using namespace std;
 
 //checks the string to find a word then returns true if it finds the word
@@ -39,7 +40,8 @@ int main()
 		}
 		else if (FindWord(User, "Solitare"))
 		{
-			cout << "Solitare it is" << endl;
+			Solitare();
+			break;
 		}
 		else if (FindWord(User, "bank"))
 		{
@@ -193,7 +195,14 @@ void BlackJack()
 	}
 }
 
+//Game 2: Solitare
+
+void AllOfTheCards();
+
 void Solitare()
 {
 	cout << "Welcome to Solitare" << endl;
 }
+
+void AllOfTheCards()
+{}
