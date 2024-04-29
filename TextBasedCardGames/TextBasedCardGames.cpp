@@ -54,7 +54,8 @@ int main()
 }
 
 
-//Game 1: Blackjack, the games are all placed under main since they can still be called and each game is still able to use FindWord()
+//Game 1: Blackjack, the games are all placed under main since they can still be called because they are definded above main
+//and they can still use FindWord(), also it makes it easier to read
 void BlackJack()
 {
 	srand(time(NULL));
@@ -67,9 +68,13 @@ void BlackJack()
 	bool PlayerWentBust = false;
 	bool DealerWentBust = false;
 	//gives the player their starting 2 cards and checks if its an ace to allow for the optional 1 or 11 value.
-	for (int i = 0; i!=1; i++)
+	for (int i = 0; i!=2; i++)
 	{
 		card = rand() % 10;
+		while (card == 0)
+		{
+			card = rand() % 10;
+		}
 		if (card == 1)
 		{
 			cout << "You got an ace do you want it to be an 11 or a 1" << endl;
@@ -102,6 +107,7 @@ void BlackJack()
 		{
 			cout << "You have gone bust" << endl;
 			PlayerWentBust = true;
+			break;
 		}
 		getline(cin, Userin);
 
@@ -113,6 +119,10 @@ void BlackJack()
 		if (FindWord(Userin, "Hit"))
 		{
 			card = rand() %10;
+			while (card == 0)
+			{
+				card = rand() % 10;
+			}
 			if (card == 1)
 			{
 				cout << "You got an ace do you want it to be an 11 or a 1" << endl;
@@ -208,9 +218,6 @@ void Solitare()
 	C1, C2, C3, C4, C5, C6, C7, C8, C9, C10, CJ, CK, CQ, 
 	H1, H2, H3, H4, H5, H6, H7, H8, H9, H10, HJ, HK, HQ, 
 	D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, DJ, DK, DQ};
-
-
-
 }
 
 void AllOfTheCards()
