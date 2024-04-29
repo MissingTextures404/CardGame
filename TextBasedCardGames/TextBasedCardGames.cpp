@@ -46,6 +46,10 @@ int main()
 		{
 			cout << "You currently have " << Bank.ReturnBalance() << endl;
 		}
+		else if (FindWord(User, "Quit"))
+		{
+			break;
+		}
 		else
 		{
 			cout << "You cant do that" << endl;
@@ -152,7 +156,8 @@ void BlackJack()
 			break;
 		}
     }
-	//the "ai" for the blackjack game
+	//the "ai" for the blackjack game, intially started off standing at 12 and above but it didnt feel like it was taking enough risks as it never went bust
+	//so now it will stop at 15 or above, making it more likely for them to go bust 
 	while (true)
 	{
 		card = rand() % 11;
@@ -162,7 +167,7 @@ void BlackJack()
 		{
 			cout << "The Dealer takes another card" << endl;
 		}
-		else if (DealerCardsValue >= 11 && DealerCardsValue < 21)
+		else if (DealerCardsValue >= 15 && DealerCardsValue < 21)
 		{
 			cout << "The Dealer ends with the vaule of " << DealerCardsValue << endl;
 			break;
@@ -175,6 +180,7 @@ void BlackJack()
 		else if (DealerCardsValue > 21)
 		{
 			cout << "The Dealers hand is a bust" << endl;
+			DealerWentBust = true;
 			break;
 		}
 	}
@@ -202,6 +208,24 @@ void BlackJack()
 	else if (!PlayerWentBust && DealerWentBust)
 	{
 		cout << "Since the dealer went bust\n" << "You Win";
+	}
+
+	cout << "\n would you like to play again?\n";
+	while (true)
+	{
+		getline(cin, Userin);
+		if (FindWord(Userin, "Yes") || FindWord(Userin, "Y"))
+		{
+			BlackJack();
+		}
+		else if (FindWord(Userin, "No") || FindWord(Userin, "N"))
+		{
+			main();
+		}
+		else if (FindWord(Userin, "Quit"))
+		{
+			break;
+		}
 	}
 }
 
