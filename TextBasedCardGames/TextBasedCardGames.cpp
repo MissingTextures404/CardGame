@@ -69,8 +69,32 @@ void BlackJack()
 	vector<int> DealerHand, DealerFaceDown;
 	vector<int> PlayerHand;
 	int card, DealerCardsValue, PlayerCardsValue;
+	int DealerStopValue = 17;
+	bool DealerSmarter = false;
 	bool PlayerWentBust = false;
 	bool DealerWentBust = false;
+
+	cout << "Select a difficulty \n 1. Easy \n 2. Normal \n 3. Hard \n";
+	while (true)
+	{
+		getline(cin, Userin);
+		if (FindWord(Userin, "Easy") || FindWord(Userin, "1"))
+		{
+			DealerStopValue = 10;
+			break;
+		}
+		else if (FindWord(Userin, "Normal") || FindWord(Userin, "2"))
+		{
+			DealerStopValue = 17;
+			break;
+		}
+		else if (FindWord(Userin, "Hard") || FindWord(Userin, "3"))
+		{
+			DealerStopValue = 17;
+			DealerSmarter = true;
+			break;
+		}
+	}
 	//gives the player their starting 2 cards and checks if its an ace to allow for the optional 1 or 11 value.
 	for (int i = 0; i!=2; i++)
 	{
@@ -157,17 +181,31 @@ void BlackJack()
 		}
     }
 	//the "ai" for the blackjack game, intially started off standing at 12 and above but it didnt feel like it was taking enough risks as it never went bust
-	//so now it will stop at 15 or above, making it more likely for them to go bust 
+	//so now it will stop at 17 or above, making it more likely for them to go bust 
 	while (true)
 	{
 		card = rand() % 11;
+		if (DealerSmarter)
+		{
+			if (card == 1 || card == 11)
+			{
+				if (DealerCardsValue < 11)
+				{
+					card = 1;
+				}
+				else if (DealerCardsValue >= 11)
+				{
+					card = 11;
+				}
+			}
+		}
 		DealerHand.push_back(card);
 		DealerCardsValue = accumulate(DealerHand.begin(), DealerHand.end(), 0);
 		if (DealerCardsValue <= 11)
 		{
 			cout << "The Dealer takes another card" << endl;
 		}
-		else if (DealerCardsValue >= 15 && DealerCardsValue < 21)
+		else if (DealerCardsValue >= DealerStopValue && DealerCardsValue < 21)
 		{
 			cout << "The Dealer ends with the vaule of " << DealerCardsValue << endl;
 			break;
