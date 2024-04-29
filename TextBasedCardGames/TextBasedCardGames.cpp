@@ -3,6 +3,7 @@
 #include <vector>
 #include <cstdlib>
 #include <numeric>
+#include <time.h>
 #include "FakeBank.h"
 #include "Cards.h"
 using namespace std;
@@ -16,8 +17,6 @@ int FindWord(string word, string FindThisWord)
 	{
 		word = word.substr(++pos);
 		return true;
-		//debug inorder to test the Recognised words
-		cout << "Recognised word " << FindThisWord << endl;
 	}
 	return false;
 }
@@ -58,6 +57,7 @@ int main()
 //Game 1: Blackjack, the games are all placed under main since they can still be called and each game is still able to use FindWord()
 void BlackJack()
 {
+	srand(time(NULL));
 	cout << "Welcome to BlackJack..." << endl;
 	cout << "The goal of the game is to beat the dealer by having you cards add up closer to 21 than the dealers cards" << endl;
     string Userin;
@@ -74,13 +74,13 @@ void BlackJack()
 		{
 			cout << "You got an ace do you want it to be an 11 or a 1" << endl;
 			getline(cin,Userin);
-			if (FindWord(Userin, "1") || FindWord(Userin, "One"))
-			{
-				PlayerHand.push_back(1);
-			}
-			else if (FindWord(Userin, "11") || FindWord(Userin, "Eleven"))
+			if (FindWord(Userin, "11") || FindWord(Userin, "Eleven"))
 			{
 				PlayerHand.push_back(11);
+			}
+			else if (FindWord(Userin, "1") || FindWord(Userin, "One"))
+			{
+				PlayerHand.push_back(1);
 			}
 		}
 		else if (card == 10)
@@ -117,13 +117,13 @@ void BlackJack()
 			{
 				cout << "You got an ace do you want it to be an 11 or a 1" << endl;
 				getline(cin,Userin);
-				if (FindWord(Userin, "1") || FindWord(Userin, "One"))
-				{
-					PlayerHand.push_back(1);
-				}
-				else if (FindWord(Userin, "11") || FindWord(Userin, "Eleven"))
+				if (FindWord(Userin, "11") || FindWord(Userin, "Eleven"))
 				{
 					PlayerHand.push_back(11);
+				}
+				else if (FindWord(Userin, "1") || FindWord(Userin, "One"))
+				{
+					PlayerHand.push_back(1);
 				}
 			}
 			else if (card == 10)
@@ -202,6 +202,15 @@ void AllOfTheCards();
 void Solitare()
 {
 	cout << "Welcome to Solitare" << endl;
+
+	enum TheCards 
+	{None, S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, SJ, SK, SQ, 
+	C1, C2, C3, C4, C5, C6, C7, C8, C9, C10, CJ, CK, CQ, 
+	H1, H2, H3, H4, H5, H6, H7, H8, H9, H10, HJ, HK, HQ, 
+	D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, DJ, DK, DQ};
+
+
+
 }
 
 void AllOfTheCards()
