@@ -2,8 +2,10 @@
 #include <string>
 #include <vector>
 #include <cstdlib>
+#include <algorithm>
 #include <numeric>
 #include <time.h>
+#include <Windows.h>
 #include "FakeBank.h"
 #include "Cards.h"
 using namespace std;
@@ -12,6 +14,7 @@ using namespace std;
 //this is probably the most important function in my eyes since it allows for the player to just type what ever but if they use the right word it works
 int FindWord(string word, string FindThisWord)
 {
+	transform(word.begin(), word.end(), word.begin(), toupper);
 	int pos;
 	for (int i = 1; (pos = word.find(FindThisWord)) != -1; i++)
 	{
@@ -32,23 +35,27 @@ int main()
 	while (true)
 	{
 		getline(cin, User);
-		if (FindWord(User, "Blackjack"))
+		if (FindWord(User, "BLACKJACK"))
 		{
 			BlackJack();
 			break;
 		}
-		else if (FindWord(User, "Solitare"))
+		else if (FindWord(User, "SOLITARE"))
 		{
 			Solitare();
 			break;
 		}
-		else if (FindWord(User, "bank"))
+		else if (FindWord(User, "BANK"))
 		{
 			cout << "You currently have " << Bank.ReturnBalance() << endl;
 		}
-		else if (FindWord(User, "Quit"))
+		else if (FindWord(User, "QUIT"))
 		{
 			break;
+		}
+		else if (FindWord(User, "CLEAR"))
+		{
+			system("cls");
 		}
 		else
 		{
@@ -63,6 +70,7 @@ int main()
 void BlackJack()
 {
 	srand(time(NULL));
+	system("cls");
 	cout << "Welcome to BlackJack..." << endl;
 	cout << "The goal of the game is to beat the dealer by having you cards add up closer to 21 than the dealers cards" << endl;
     string Userin;
@@ -78,17 +86,17 @@ void BlackJack()
 	while (true)
 	{
 		getline(cin, Userin);
-		if (FindWord(Userin, "Easy") || FindWord(Userin, "1"))
+		if (FindWord(Userin, "EASY") || FindWord(Userin, "1"))
 		{
 			DealerStopValue = 10;
 			break;
 		}
-		else if (FindWord(Userin, "Normal") || FindWord(Userin, "2"))
+		else if (FindWord(Userin, "NORMAL") || FindWord(Userin, "2"))
 		{
 			DealerStopValue = 17;
 			break;
 		}
-		else if (FindWord(Userin, "Hard") || FindWord(Userin, "3"))
+		else if (FindWord(Userin, "HARD") || FindWord(Userin, "3"))
 		{
 			DealerStopValue = 17;
 			DealerSmarter = true;
@@ -107,11 +115,11 @@ void BlackJack()
 		{
 			cout << "You got an ace do you want it to be an 11 or a 1" << endl;
 			getline(cin,Userin);
-			if (FindWord(Userin, "11") || FindWord(Userin, "Eleven"))
+			if (FindWord(Userin, "11") || FindWord(Userin, "ELEVEN"))
 			{
 				PlayerHand.push_back(11);
 			}
-			else if (FindWord(Userin, "1") || FindWord(Userin, "One"))
+			else if (FindWord(Userin, "1") || FindWord(Userin, "ONE"))
 			{
 				PlayerHand.push_back(1);
 			}
@@ -139,12 +147,12 @@ void BlackJack()
 		}
 		getline(cin, Userin);
 
-		if (FindWord(Userin, "Check"))
+		if (FindWord(Userin, "CHECK"))
 		{
 			cout << "You currently have cards that add up to the value of " << PlayerCardsValue << endl;
 		}
 		
-		if (FindWord(Userin, "Hit"))
+		if (FindWord(Userin, "HIT"))
 		{
 			card = rand() %10;
 			while (card == 0)
@@ -175,7 +183,7 @@ void BlackJack()
 				PlayerHand.push_back(card);
 			}
 		}
-		if (FindWord(Userin, "Stand") || FindWord(Userin, "No more"))
+		if (FindWord(Userin, "STAND") || FindWord(Userin, "NO MORE"))
 		{
 			break;
 		}
@@ -252,15 +260,15 @@ void BlackJack()
 	while (true)
 	{
 		getline(cin, Userin);
-		if (FindWord(Userin, "Yes") || FindWord(Userin, "Y"))
+		if (FindWord(Userin, "YES") || FindWord(Userin, "Y"))
 		{
 			BlackJack();
 		}
-		else if (FindWord(Userin, "No") || FindWord(Userin, "N"))
+		else if (FindWord(Userin, "NO") || FindWord(Userin, "N"))
 		{
 			main();
 		}
-		else if (FindWord(Userin, "Quit"))
+		else if (FindWord(Userin, "QUIT"))
 		{
 			break;
 		}
@@ -269,10 +277,9 @@ void BlackJack()
 
 //Game 2: Solitare
 
-void AllOfTheCards();
-
 void Solitare()
 {
+	system("cls");
 	cout << "Welcome to Solitare" << endl;
 
 	enum TheCards 
@@ -280,7 +287,12 @@ void Solitare()
 	C1, C2, C3, C4, C5, C6, C7, C8, C9, C10, CJ, CK, CQ, 
 	H1, H2, H3, H4, H5, H6, H7, H8, H9, H10, HJ, HK, HQ, 
 	D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, DJ, DK, DQ};
-}
+	
+	// allows the Text to be coloured to help with identifying what colour the card is
 
-void AllOfTheCards()
-{}
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hConsole, 12);
+	cout << "i should be red";
+	SetConsoleTextAttribute(hConsole, 7);
+	cout << "i should be white again";
+}
