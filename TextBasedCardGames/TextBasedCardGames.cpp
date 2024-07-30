@@ -286,6 +286,7 @@ void Solitare()
 	string Input;
 	system("cls");
 	cout << "Welcome to Solitare" << endl;
+	cout << "To deal the card, type ace to deal the first and then two for second, three for the third etc, up to Jack queen king and then start at Ace again.\n" << "The idea of the game is to remove all cards from the pack, this is done when the word you called matches the card drawn and removes that card from the pack.\n" << "after going through the deck twice without discarding any cards, you lose" << endl;
 
 	vector<string> Cards =
 	{
@@ -317,7 +318,7 @@ void Solitare()
 			if (c == 2)
 			{
 				SetConsoleTextAttribute(hConsole, 12);
-				cout << "Game over" << endl;
+				cout << "Game Over" << endl;
 				SetConsoleTextAttribute(hConsole, 7);
 				break;
 			}
@@ -330,7 +331,7 @@ void Solitare()
 				if (i == "S10" || i == "C10" || i == "H10" || i == "D10")
 				{
 					Cards.erase(Cards.begin() + b);
-					cout << " Card discarded" << endl;
+					cout << "Hit Card discarded" << endl;
 					c = 0;
 				}
 			}
@@ -339,7 +340,7 @@ void Solitare()
 				if (i == "S1" || i == "C1" || i == "H1" || i == "D1")
 				{
 					Cards.erase(Cards.begin()+b);
-					cout << " Card discarded" << endl;
+					cout << "Hit Card discarded" << endl;
 					c = 0;
 				}
 			}
@@ -348,7 +349,7 @@ void Solitare()
 				if (i == "S2" || i == "C2" || i == "H2" || i == "D2")
 				{
 					Cards.erase(Cards.begin() + b);
-					cout << " Card discarded" << endl;
+					cout << "Hit Card discarded" << endl;
 					c = 0;
 				}
 			}
@@ -357,7 +358,7 @@ void Solitare()
 				if (i == "S3" || i == "C3" || i == "H3" || i == "D3")
 				{
 					Cards.erase(Cards.begin() + b);
-					cout << " Card discarded" << endl;
+					cout << "Hit Card discarded" << endl;
 					c = 0;
 				}
 			}
@@ -366,7 +367,7 @@ void Solitare()
 				if (i == "S4" || i == "C4" || i == "H4" || i == "D4")
 				{
 					Cards.erase(Cards.begin() + b);
-					cout << " Card discarded" << endl;
+					cout << "Hit Card discarded" << endl;
 					c = 0;
 				}
 			}
@@ -375,7 +376,7 @@ void Solitare()
 				if (i == "S5" || i == "C5" || i == "H5" || i == "D5")
 				{
 					Cards.erase(Cards.begin() + b);
-					cout << " Card discarded" << endl;
+					cout << "Hit Card discarded" << endl;
 					c = 0;
 				}
 			}
@@ -384,7 +385,7 @@ void Solitare()
 				if (i == "S6" || i == "C6" || i == "H6" || i == "D6")
 				{
 					Cards.erase(Cards.begin() + b);
-					cout << " Card discarded" << endl;
+					cout << "Hit Card discarded" << endl;
 					c = 0;
 				}
 			}
@@ -393,7 +394,7 @@ void Solitare()
 				if (i == "S7" || i == "C7" || i == "H7" || i == "D7")
 				{
 					Cards.erase(Cards.begin() + b);
-					cout << " Card discarded" << endl;
+					cout << "Hit Card discarded" << endl;
 					c = 0;
 				}
 			}
@@ -402,7 +403,7 @@ void Solitare()
 				if (i == "S8" || i == "C8" || i == "H8" || i == "D8")
 				{
 					Cards.erase(Cards.begin() + b);
-					cout << " Card discarded" << endl;
+					cout << "Hit Card discarded" << endl;
 					c = 0;
 				}
 			}
@@ -411,7 +412,7 @@ void Solitare()
 				if (i == "S9" || i == "C9" || i == "H9" || i == "D9")
 				{
 					Cards.erase(Cards.begin() + b);
-					cout << " Card discarded" << endl;
+					cout << "Hit Card discarded" << endl;
 					c = 0;
 				}
 			}
@@ -420,7 +421,7 @@ void Solitare()
 				if (i == "SK" || i == "CK" || i == "HK" || i == "DK")
 				{
 					Cards.erase(Cards.begin() + b);
-					cout << " Card discarded" << endl;
+					cout << "Hit Card discarded" << endl;
 					c = 0;
 				}
 			}
@@ -429,7 +430,7 @@ void Solitare()
 				if (i == "SQ" || i == "CQ" || i == "HQ" || i == "DQ")
 				{
 					Cards.erase(Cards.begin() + b);
-					cout << " Card discarded" << endl;
+					cout << "Hit Card discarded" << endl;
 					c = 0;
 				}
 			}
@@ -438,7 +439,7 @@ void Solitare()
 				if (i == "SJ" || i == "CJ" || i == "HJ" || i == "DJ")
 				{
 					Cards.erase(Cards.begin() + b);
-					cout << " Card discarded" << endl;
+					cout << "Hit Card discarded" << endl;
 					c = 0;
 				}
 			}
@@ -450,6 +451,20 @@ void Solitare()
 					cout << z << " ";
 				}
 				cout << endl;
+			}
+			if (FindWord(Input, "CLEAR ALL"))
+			{
+				SetConsoleTextAttribute(hConsole, 28);
+				cout << "DEBUG_Message: You cheater" << endl;
+				SetConsoleTextAttribute(hConsole, 7);
+				Cards.clear();
+			}
+			if (Cards.empty())
+			{
+				SetConsoleTextAttribute(hConsole, 32);
+				cout << "You win" << endl;
+				SetConsoleTextAttribute(hConsole, 7);
+				break;
 			}
 			b++;
 		}
