@@ -12,7 +12,6 @@ public:
 
 	void deposit(float amout);
 	void MoreHandMoney(float amout);
-	string CheckHand();
 	string ReturnBalance();
 };
 

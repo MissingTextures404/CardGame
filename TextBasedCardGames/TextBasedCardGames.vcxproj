@@ -127,13 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Blackjack.cpp" />
     <ClCompile Include="FakeBank.cpp" />
+    <ClCompile Include="Tableau.cpp" />
     <ClCompile Include="TextBasedCardGames.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Blackjack.h" />
     <ClInclude Include="FakeBank.h" />
+    <ClInclude Include="Tableau.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

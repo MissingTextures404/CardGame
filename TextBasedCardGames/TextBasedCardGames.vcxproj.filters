@@ -18,18 +18,18 @@
     <ClCompile Include="TextBasedCardGames.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Blackjack.cpp">
+    <ClCompile Include="FakeBank.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FakeBank.cpp">
+    <ClCompile Include="Tableau.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Blackjack.h">
+    <ClInclude Include="FakeBank.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FakeBank.h">
+    <ClInclude Include="Tableau.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

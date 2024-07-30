@@ -21,10 +21,3 @@ string FakeBank::ReturnBalance()
 	stbal = to_string(CurrBalance);
 	return stbal;
 }
-
-string FakeBank::CheckHand()
-{
-	string sthand;
-	sthand = to_string(MoneyInHand);
-	return sthand;
-}
