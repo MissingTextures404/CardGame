@@ -8,14 +8,11 @@ Cards::Cards()
 	this->CardName;
 }
 
-void Cards::CardDefine(string Card, string Stack, int ID)
+void Cards::CardDefine(string Card, int Stack, string Suit, int ID, int Colour)
 {
 	this->CardName = Card;
 	this->CanStackWith = Stack;
+	this->CardSuit = Suit;
 	this->CardID = ID;
-}
-
-void Cards::CardPrint()
-{
-	
+	this->CardColour = Colour;
 }

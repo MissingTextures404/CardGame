@@ -3,10 +3,8 @@
 using namespace std;
 class Cards
 {
-	string CardName, CanStackWith;
-	int CardID;
+	string CardName, CardSuit;
+	int CardID, CanStackWith, CardColour;
 
-	void CardDefine(string Card, string Stack, int ID);
-	void CardPrint();
+public: void CardDefine(string Card, int Stack, string Suit, int ID, int Colour);
 };
-

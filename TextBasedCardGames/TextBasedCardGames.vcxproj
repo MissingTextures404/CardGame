@@ -128,10 +128,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="FakeBank.cpp" />
+    <ClCompile Include="Tableau.cpp" />
     <ClCompile Include="TextBasedCardGames.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FakeBank.h" />
+    <ClInclude Include="Tableau.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

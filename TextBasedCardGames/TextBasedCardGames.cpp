@@ -1,4 +1,5 @@
 #include <iostream>
+#include <random>
 #include <string>
 #include <vector>
 #include <cstdlib>
@@ -6,6 +7,7 @@
 #include <numeric>
 #include <time.h>
 #include <Windows.h>
+#include <stack>
 #include "FakeBank.h"
 #include "Cards.h"
 using namespace std;
@@ -276,23 +278,181 @@ void BlackJack()
 }
 
 //Game 2: Solitare
+void PrintVector(vector<int> Vector);
+void CardDef();
 
 void Solitare()
 {
+	string Input;
 	system("cls");
 	cout << "Welcome to Solitare" << endl;
 
-	enum TheCards 
-	{None, S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, SJ, SK, SQ, 
-	C1, C2, C3, C4, C5, C6, C7, C8, C9, C10, CJ, CK, CQ, 
-	H1, H2, H3, H4, H5, H6, H7, H8, H9, H10, HJ, HK, HQ, 
-	D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, DJ, DK, DQ};
-	
-	// allows the Text to be coloured to help with identifying what colour the card is
+	vector<string> Cards =
+	{
+		"S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10", "SJ", "SK", "SQ",
+		"C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "C10", "CJ", "CK", "CQ",
+		"H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "HJ", "HK", "HQ",
+		"D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "D10", "DJ", "DK", "DQ"
+	};
+
+	random_device rd;
+	mt19937 g(rd());
+
+	shuffle(Cards.begin(), Cards.end(), g);
+
+	// allows the Text to be coloured to help with identifying what colour the card is, commented out text bellow is just a test
 
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(hConsole, 12);
+	/*SetConsoleTextAttribute(hConsole, 12);
 	cout << "i should be red";
 	SetConsoleTextAttribute(hConsole, 7);
-	cout << "i should be white again";
+	cout << "i should be white again" << endl;*/
+	int c = 0;
+	while (true)
+	{
+		int b=0;
+		for (string i : Cards)
+		{
+			//checks to see if they have gone through the deck twice
+			if (c == 2)
+			{
+				SetConsoleTextAttribute(hConsole, 12);
+				cout << "Game over" << endl;
+				SetConsoleTextAttribute(hConsole, 7);
+				break;
+			}
+
+			getline(cin, Input);
+			cout << i << endl;
+			// ten has to be at the top since FindWord doesnt discriminate
+			if (FindWord(Input, "TEN") || (FindWord(Input, "10")))
+			{
+				if (i == "S10" || i == "C10" || i == "H10" || i == "D10")
+				{
+					Cards.erase(Cards.begin() + b);
+					cout << " Card discarded" << endl;
+					c = 0;
+				}
+			}
+			else if (FindWord(Input, "ACE") || (FindWord(Input, "1"))
+			){
+				if (i == "S1" || i == "C1" || i == "H1" || i == "D1")
+				{
+					Cards.erase(Cards.begin()+b);
+					cout << " Card discarded" << endl;
+					c = 0;
+				}
+			}
+			if (FindWord(Input, "TWO") || (FindWord(Input, "2"))
+			){
+				if (i == "S2" || i == "C2" || i == "H2" || i == "D2")
+				{
+					Cards.erase(Cards.begin() + b);
+					cout << " Card discarded" << endl;
+					c = 0;
+				}
+			}
+			if (FindWord(Input, "THREE") || (FindWord(Input, "3")))
+			{
+				if (i == "S3" || i == "C3" || i == "H3" || i == "D3")
+				{
+					Cards.erase(Cards.begin() + b);
+					cout << " Card discarded" << endl;
+					c = 0;
+				}
+			}
+			if (FindWord(Input, "FOUR") || (FindWord(Input, "4")))
+			{
+				if (i == "S4" || i == "C4" || i == "H4" || i == "D4")
+				{
+					Cards.erase(Cards.begin() + b);
+					cout << " Card discarded" << endl;
+					c = 0;
+				}
+			}
+			if (FindWord(Input, "FIVE") || (FindWord(Input, "5")))
+			{
+				if (i == "S5" || i == "C5" || i == "H5" || i == "D5")
+				{
+					Cards.erase(Cards.begin() + b);
+					cout << " Card discarded" << endl;
+					c = 0;
+				}
+			}
+			if (FindWord(Input, "SIX") || (FindWord(Input, "6")))
+			{
+				if (i == "S6" || i == "C6" || i == "H6" || i == "D6")
+				{
+					Cards.erase(Cards.begin() + b);
+					cout << " Card discarded" << endl;
+					c = 0;
+				}
+			}
+			if (FindWord(Input, "SEVEN") || (FindWord(Input, "7")))
+			{
+				if (i == "S7" || i == "C7" || i == "H7" || i == "D7")
+				{
+					Cards.erase(Cards.begin() + b);
+					cout << " Card discarded" << endl;
+					c = 0;
+				}
+			}
+			if (FindWord(Input, "EIGHT") || (FindWord(Input, "8")))
+			{
+				if (i == "S8" || i == "C8" || i == "H8" || i == "D8")
+				{
+					Cards.erase(Cards.begin() + b);
+					cout << " Card discarded" << endl;
+					c = 0;
+				}
+			}
+			if (FindWord(Input, "NINE") || (FindWord(Input, "9")))
+			{
+				if (i == "S9" || i == "C9" || i == "H9" || i == "D9")
+				{
+					Cards.erase(Cards.begin() + b);
+					cout << " Card discarded" << endl;
+					c = 0;
+				}
+			}
+			if (FindWord(Input, "KING"))
+			{
+				if (i == "SK" || i == "CK" || i == "HK" || i == "DK")
+				{
+					Cards.erase(Cards.begin() + b);
+					cout << " Card discarded" << endl;
+					c = 0;
+				}
+			}
+			if (FindWord(Input, "QUEEN"))
+			{
+				if (i == "SQ" || i == "CQ" || i == "HQ" || i == "DQ")
+				{
+					Cards.erase(Cards.begin() + b);
+					cout << " Card discarded" << endl;
+					c = 0;
+				}
+			}
+			if (FindWord(Input, "JACK"))
+			{
+				if (i == "SJ" || i == "CJ" || i == "HJ" || i == "DJ")
+				{
+					Cards.erase(Cards.begin() + b);
+					cout << " Card discarded" << endl;
+					c = 0;
+				}
+			}
+			if (FindWord(Input, "PRINT ALL"))
+			{
+				cout << "DEBUG current full string :";
+				for (string z : Cards)
+				{
+					cout << z << " ";
+				}
+				cout << endl;
+			}
+			b++;
+		}
+		c++;
+	}
 }
